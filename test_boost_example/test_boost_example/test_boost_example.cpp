@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "test_date/test_time.h"
-
+#include "test_date/test_date.h"
 
 
 
@@ -12,6 +12,8 @@
 int main()
 {
 	time_date();
+
+	test_date_func();
 	return 0;
 }
 
