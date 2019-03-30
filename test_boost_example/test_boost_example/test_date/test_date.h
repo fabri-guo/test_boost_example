@@ -11,6 +11,8 @@ public:
 	void test_time_duration();
 
 	void test_ptime();
+
+	void test_format();
 };
 
 

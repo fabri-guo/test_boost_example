@@ -2,7 +2,7 @@
 
 #include "boost/date_time/gregorian/gregorian.hpp"
 #include "boost/date_time/posix_time/posix_time.hpp"
-
+#include "boost/date_time/local_time/local_date_time.hpp"
 using namespace boost::gregorian;
 using namespace boost::posix_time;
 
@@ -14,6 +14,11 @@ void test_date_func()
 	d1.test_date_period();
 
 	d1.test_time_duration();
+
+	d1.test_ptime();
+
+	d1.test_format();
+
 }
 
 void test_date::test_mdate()
@@ -364,5 +369,24 @@ void test_date::test_ptime()
 		{
 			std::cout << *t_iter << std::endl;
 		}
+	}
+}
+
+void test_date::test_format()
+{
+	using namespace boost::local_time;
+	date d(2014, 11, 3);
+	date_facet* dfact = new date_facet("%Y年%m月%d日");
+	std::cout.imbue(std::locale(std::cout.getloc(), dfact));
+	std::cout << d << std::endl;
+
+	time_facet* tfact = new time_facet("%Y年%m月%d日%H点%M分%S%F秒");
+	std::cout.imbue(std::locale(std::cout.getloc(), tfact));
+	std::cout << ptime(d, hours(21) + minutes(50) + millisec(100)) << std::endl;
+
+	{
+		//tz_database tz_db;
+
+		//nothing
 	}
 }
