@@ -156,12 +156,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="class_ptr\class_ptr.cpp" />
+    <ClCompile Include="class_ptr\pool_all.cpp" />
     <ClCompile Include="test_boost_example.cpp" />
     <ClCompile Include="test_date\test_date.cpp" />
     <ClCompile Include="test_date\test_time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="class_ptr\class_ptr.h" />
+    <ClInclude Include="class_ptr\pool_all.h" />
     <ClInclude Include="test_date\test_date.h" />
     <ClInclude Include="test_date\test_time.h" />
   </ItemGroup>
