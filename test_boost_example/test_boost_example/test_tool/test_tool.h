@@ -10,5 +10,9 @@ public:
 	void test_optional();
 
 	void test_assign();
+
+	void test_stack();
+
+	void test_tribool();
 };
 

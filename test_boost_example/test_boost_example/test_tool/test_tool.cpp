@@ -5,10 +5,12 @@
 #include <set>
 #include <deque>
 #include <map>
+#include <queue>
 
 #include "boost/core/ignore_unused.hpp"
 #include "boost/optional.hpp"
 #include "boost/assign.hpp"
+#include "boost/logic/tribool.hpp"
 /*
 class noncopyable
 {
@@ -119,4 +121,56 @@ void test_tool::test_assign()
 		std::deque<int> d;
 		push_front(d).range(v.begin(), v.begin()+ 5);
 	}
+}
+
+void test_tool::test_stack()
+{
+	using namespace boost::assign;
+	std::stack<int> stk = (list_of(1), 2, 3).to_adapter();
+	stk += 4, 5, 6;
+	for (; !stk.empty();)
+	{
+		std::cout << stk.top() << " ";
+		stk.pop();
+	}
+	std::queue<std::string> q = (list_of("chain")("us")("uk")).repeat(2, "russia").to_adapter();
+	push(q)("germany");
+	for (; !q.empty();)
+	{
+		std::cout << q.front() << " ";
+		q.pop();
+	}
+	std::priority_queue<double> pq = (list_of(1.2323), 1.566, 1.666, 2.6666).to_adapter();
+	push(pq), 3.14, 2.7812;
+	for ( ; !pq.empty();)
+	{
+		std::cout << pq.top() << " ";
+		pq.pop();
+	}
+
+	int a = 1, b = 2, c = 3;
+	std::vector<int> v = ref_list_of<3>(a)(b)(c);
+	assert(v.size() == 3);
+}
+
+void test_tool::test_tribool()
+{
+	using namespace boost;
+	tribool tb(true);
+	tribool tb2(!tb);
+	if (tb)
+	{
+		std::cout << "true" << std::endl;
+	}
+	tb2 = indeterminate;
+	assert(indeterminate(tb2));
+	std::cout << tb2 << std::endl;
+
+	if(indeterminate(tb2))
+	{
+		std::cout << "indeterminate" << std::endl;
+	}
+
+	std::cout << (tb2 || true) << std::endl;
+	std::cout << (tb2 && false) << std::endl;
 }
