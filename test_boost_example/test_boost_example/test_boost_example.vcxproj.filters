@@ -26,11 +26,15 @@
     <ClCompile Include="class_ptr\pool_all.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test_tool\test_tool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test_date\test_time.h" />
     <ClInclude Include="test_date\test_date.h" />
     <ClInclude Include="class_ptr\class_ptr.h" />
     <ClInclude Include="class_ptr\pool_all.h" />
+    <ClInclude Include="test_tool\test_tool.h" />
   </ItemGroup>
 </Project>
