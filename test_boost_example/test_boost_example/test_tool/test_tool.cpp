@@ -30,6 +30,8 @@ void test_tool_func()
 	tt.test_assign();
 	tt.test_ignore_unused(10, 10);
 	tt.test_optional();
+	tt.test_stack();
+	tt.test_tribool();
 }
 
 void test_tool::test_ignore_unused(int a, int c)
