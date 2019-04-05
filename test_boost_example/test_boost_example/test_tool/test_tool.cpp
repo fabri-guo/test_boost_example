@@ -11,6 +11,10 @@
 #include "boost/optional.hpp"
 #include "boost/assign.hpp"
 #include "boost/logic/tribool.hpp"
+#include "boost/exception/exception.hpp"
+#include "boost/uuid/uuid.hpp"
+#include "boost/uuid/uuid_generators.hpp"
+#include "boost/uuid/uuid_io.hpp"
 /*
 class noncopyable
 {
@@ -174,3 +178,79 @@ void test_tool::test_tribool()
 	std::cout << (tb2 || true) << std::endl;
 	std::cout << (tb2 && false) << std::endl;
 }
+
+void test_tool::test_uuid()
+{
+	using namespace boost::uuids;
+	{
+		uuid u;
+		assert(uuid::static_size() == 16);
+		assert(u.size() == 16);
+		std::vector<unsigned int> v(16, 7);
+		std::copy(v.begin(), v.end(), u.begin());
+		assert(u.data[0] == u.data[1] && u.data[15] == 7);
+		std::cout << u << std::endl;
+
+		std::fill_n(u.data + 10, 6, 8);
+		std::cout << u << std::endl;
+	}
+	{
+		uuid u;
+		//std::fill_n(u.begin(), u.end(), 0xab);
+		assert(!u.size());
+		assert(u.variant() == u.variant_rfc_4122);
+		assert(u.version() == u.version_unknown);
+		std::cout << u << std::endl;
+
+		std::memset(u.data, 0, 16);
+		assert(u.is_nil());
+	}
+
+	{
+		uuid u1, u2;
+		std::fill_n(u1.begin(), u1.size(), 0xab);
+		std::fill_n(u2.begin(), u2.size(), 0x10);
+		assert(u1 != u2 && u1 > u2);
+		u2.data[0] = 0xff;
+		assert(u1 < u2);
+		std::memset(u1.data, 0, 16);
+		std::memset(u2.data, 0, 16);
+		assert(u1 == u2);
+	}
+
+	{
+		//{480C1AD1-CF49-4E3A-8D4A-FE8D3E4C21B9}
+		uuid u = nil_generator()();
+		assert(u.is_nil());
+		u = nil_uuid();
+		assert(u.is_nil());
+	}
+	{
+		string_generator sgen;
+		uuid u1 = sgen("0123456789abcdefg0123456789abcdef");
+		std::cout << u1 << std::endl;
+		uuid u2 = sgen("480C1AD1-CF49-4E3A-8D4A-FE8D3E4C21B9");
+		std::cout << u2 << std::endl;
+		uuid u3 = sgen(L"{480C1AD1-CF49-4E3A-8D4A-FE8D3E4C21B9}");
+		std::cout << u3 << std::endl;
+	}
+	{
+		uuid www_xx_com = string_generator()("{480C1AD1-CF49-4E3A-8D4A-FE8D3E4C21B9}");
+		name_generator ngen(www_xx_com);
+		uuid u1 = ngen("mario");
+		assert(!u1.is_nil() && u1.version() == uuid::version_name_based_sha1);
+		uuid u2 = ngen("link");
+		std::cout << u2 << std::endl;
+	}
+	{
+		random_generator rgen;
+		uuid u = rgen();
+		assert(u.version() == uuid::version_random_number_based);
+		std::cout << u << std::endl;
+	}
+}
+
+struct my_exception : virtual std::exception, virtual boost::exception
+{
+
+};

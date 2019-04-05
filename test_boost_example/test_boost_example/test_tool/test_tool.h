@@ -14,5 +14,7 @@ public:
 	void test_stack();
 
 	void test_tribool();
+
+	void test_uuid();
 };
 
