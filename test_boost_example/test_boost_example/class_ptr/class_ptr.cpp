@@ -12,6 +12,8 @@ void test_class_ptr()
 	cp.test_scoped_ptr();
 	cp.test_unique_ptr();
 	cp.test_shared_ptr();
+	cp.test_weak_ptr();
+	cp.test_intrusive_ptr();
 }
 
 
