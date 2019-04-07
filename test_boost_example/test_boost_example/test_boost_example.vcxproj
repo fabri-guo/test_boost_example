@@ -162,6 +162,7 @@
     <ClCompile Include="test_boost_example.cpp" />
     <ClCompile Include="test_date\test_date.cpp" />
     <ClCompile Include="test_date\test_time.cpp" />
+    <ClCompile Include="test_option_string\test_string.cpp" />
     <ClCompile Include="test_tool\test_tool.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="class_ptr\pool_all.h" />
     <ClInclude Include="test_date\test_date.h" />
     <ClInclude Include="test_date\test_time.h" />
+    <ClInclude Include="test_option_string\test_string.h" />
     <ClInclude Include="test_tool\test_tool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

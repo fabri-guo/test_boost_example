@@ -250,6 +250,30 @@ void test_tool::test_uuid()
 		assert(u.version() == uuid::version_random_number_based);
 		std::cout << u << std::endl;
 	}
+	{
+		uuid u = string_generator()("1234567890");
+		std::string str = to_string(u);
+		std::cout << str << std::endl;
+
+		//uuid u1 = lexical_cast<uuid>("123456789");
+		//std::cout << u1 << std::endl;
+
+	}
+	{
+		using namespace boost::uuids::detail;
+		sha1 sha;
+		const char* szMsg = "a short message";
+		sha.process_byte(0x10);
+		sha.process_bytes(szMsg, strlen(szMsg));
+		sha.process_block(szMsg, szMsg + strlen(szMsg));
+
+		unsigned int digestp[5];
+		sha.get_digest(digestp);
+		for (int i = 0; i < 5; ++i)
+		{
+			std::cout << std::ios::hex << digestp[i];
+		}
+	}
 }
 
 struct my_exception : virtual std::exception, virtual boost::exception
