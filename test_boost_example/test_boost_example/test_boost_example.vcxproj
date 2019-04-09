@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="class_ptr\class_ptr.cpp" />
     <ClCompile Include="class_ptr\pool_all.cpp" />
+    <ClCompile Include="container\test_container.cpp" />
     <ClCompile Include="test_boost_example.cpp" />
     <ClCompile Include="test_date\test_date.cpp" />
     <ClCompile Include="test_date\test_time.cpp" />
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="class_ptr\class_ptr.h" />
     <ClInclude Include="class_ptr\pool_all.h" />
+    <ClInclude Include="container\test_container.h" />
     <ClInclude Include="test_date\test_date.h" />
     <ClInclude Include="test_date\test_time.h" />
     <ClInclude Include="test_option_string\test_string.h" />
