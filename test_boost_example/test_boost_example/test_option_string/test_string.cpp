@@ -268,4 +268,15 @@ void test_string::test_xpressive()
 		str = regex_replace(str, reg1, "$200");
 		std::cout << str << std::endl;
 	}
-}
+	{
+		//std::string str("Power_bomber, pwoer-suit, pwoert-beam, all items\n");
+		//sregex reg = sregex::compile("power-(\\w{4})", icase);
+		//sregex_iterator pos(str.begin(), str.end());
+		//sregex_iterator end;
+		//for (; pos != end; ++pos)
+		//{
+		//	std::cout << "[" << (*pos)[0] << "]";
+		//}
+
+	}
+}	
